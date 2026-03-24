@@ -18,14 +18,20 @@ body {
   align-items: center;
   margin: 0 auto;
 }
+
 .nav-container {
   display: flex;
+  list-style: none;
   gap: 32px;
 }
-.nav-container > div {
+.nav-container > li {
   margin: 12px 24px;
   font-size: 28px;
-  font-weight: medium;
+  font-weight: 500;
+}
+.nav-container > li > a {
+  color: black;
+  text-decoration: none;
 }
 
 /* main */
