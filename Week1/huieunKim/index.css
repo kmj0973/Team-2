@@ -109,6 +109,25 @@ h2 {
     color: #4A86FF;
 }
 
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.contact-item span {
+    font-size: 18px;
+    color: #333;
+}
+
 .profile-img {
     width: 200px;
     height: 200px;
