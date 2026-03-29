@@ -22,10 +22,10 @@ body {
     padding: 0 10%;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: 800;
-    color: #4A86FF;
+.navbar img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
