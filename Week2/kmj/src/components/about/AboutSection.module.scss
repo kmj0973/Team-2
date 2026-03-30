@@ -1,0 +1,65 @@
+.title {
+  color: #4a86ff;
+  font-size: 70px;
+  font-weight: 800;
+}
+.aboutContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 59px;
+  margin-bottom: 200px;
+}
+.aboutContents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 40px;
+}
+.profileCard {
+  grid-row: span 2;
+  width: 380px;
+  height: 498px;
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.myPhoto {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #ebedf8;
+  margin-bottom: 25px;
+  object-fit: cover;
+}
+.name {
+  color: #4a86ff;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.phone,
+.email,
+.address {
+  width: 300px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 16px;
+}
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 23px;
+}
+.aboutContents > div > p {
+  color: #626682;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.7;
+}
