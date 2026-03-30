@@ -1,3 +1,10 @@
+@mixin flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .title {
   color: #4a86ff;
   font-size: 70px;
@@ -5,10 +12,7 @@
 }
 .hobbyContainer {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex;
   gap: 59px;
   margin-bottom: 200px;
 }
@@ -20,10 +24,7 @@
 @media screen and (max-width: 1200px) {
   .hobbyContainer {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex;
     gap: 59px;
     margin-bottom: 200px;
   }
