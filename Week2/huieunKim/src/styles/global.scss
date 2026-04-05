@@ -1,0 +1,25 @@
+@import './variables';
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: $bg-color;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.section-title {
+    color: $primary-color;
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 60px;
+}
