@@ -6,7 +6,15 @@ export const BoardForm = ({ addPost }) => {
   const [content, setContent] = useState('');
 
   return (
-    <div className={styles.boardFormWrapper}>
+    <form
+      className={styles.boardFormWrapper}
+      onSubmit={(e) => {
+        e.preventDefault();
+        addPost({ title, content });
+        setTitle('');
+        setContent('');
+      }}
+    >
       <input
         onChange={(e) => {
           setTitle(e.target.value);
@@ -23,16 +31,9 @@ export const BoardForm = ({ addPost }) => {
         type="text"
         placeholder="내용을 입력하세요"
       />
-      <button
-        className={styles.boardFormAddButton}
-        onClick={() => {
-          addPost({ title, content });
-          setTitle('');
-          setContent('');
-        }}
-      >
+      <button type="submit" className={styles.boardFormAddButton}>
         게시글 추가
       </button>
-    </div>
+    </form>
   );
 };
