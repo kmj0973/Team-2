@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import BoardForm from '../components/BoardForm';
+import BoardList from '../components/BoardList';
 
 function Board() {
   // 💡 실습 1. 여기에 가짜 데이터 상태(useState)를 만들게 됩니다.
@@ -10,6 +11,10 @@ function Board() {
 
   const handleAddPost = (newPost) => {
     setPosts([...posts, newPost]);
+  };
+
+  const handleDeletePost = (id) => {
+    setPosts(posts.filter((post) => post.id !== id));
   };
 
   return (
@@ -25,13 +30,7 @@ function Board() {
       {/* 💡 실습 3. 게시글 목록 컴포넌트(BoardList & BoardItem)가 들어갈 자리 */}
       <div style={{ padding: '10px', border: '1px solid #ccc' }}>
         <h3>게시글 목록 영역 (BoardList)</h3>
-        <ul>
-        {posts.map((post) => (
-            <li key={post.id}>
-            <strong>{post.title}</strong>: {post.content}
-             </li>
-        ))} 
-        </ul>
+        <BoardList posts={posts} onDelete={handleDeletePost} />
       </div>
     </div>
   );
