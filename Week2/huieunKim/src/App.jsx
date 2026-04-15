@@ -6,10 +6,10 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+        <Header />
       <main>
-        <About></About>
-        <Hobby></Hobby>
+        <About />
+        <Hobby />
       </main>
     </>
 
