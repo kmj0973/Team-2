@@ -1,20 +1,10 @@
 import React from 'react';
 import './Hobby.scss';
+import HobbyItem from './HobbyItem';
 import bookImg from '../assets/book.jpg';
 import imagineImg from '../assets/imagine.jpg';
 import teaImg from '../assets/blacktea.jpg';
 
-
-const HobbyItem = ({ label, imgSrc, altText }) => {
-    return (
-        <div className="hobby-item">
-            <div className="hobby-label">{label}</div>
-            <div className="hobby-item-img-wrapper">
-                <img src={imgSrc} alt={altText} />
-            </div>
-        </div>
-    );
-};
 
 const Hobby = () => {
     const hobbyData = [
