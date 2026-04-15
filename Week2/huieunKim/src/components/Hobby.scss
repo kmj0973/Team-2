@@ -1,5 +1,5 @@
-@import '../styles/variables';
-@import '../styles/mixin';
+@use '../styles/variables' as v;
+@use '../styles/mixin' as m;
 
 .hobby-section {
     width: 100%;
@@ -17,7 +17,7 @@
 }
 
 .hobby-item {
-    background-color: $primary-color;
+    background-color: v.$primary-color;
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -32,7 +32,7 @@
     .hobby-item-img-wrapper {
         background-color: white;
         padding: 40px;
-        @include flex-center;
+        @include m.flex-center;
         height: 300px;
 
         img {

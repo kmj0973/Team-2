@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as v;
 
 html {
     scroll-behavior: smooth;
@@ -18,7 +18,7 @@ body {
 }
 
 .section-title {
-    color: $primary-color;
+    color: v.$primary-color;
     font-size: 50px;
     font-weight: 800;
     margin-bottom: 60px;
