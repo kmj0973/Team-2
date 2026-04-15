@@ -45,7 +45,7 @@
 
     span {
         font-size: 18px;
-        color: #333;
+        color: v.$text-secondary;
     }
 }
 
@@ -64,8 +64,15 @@
     gap: 30px;
 }
 
-.info-item h4 {
+.info-item {
+    h4 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    }
+
+    p {
+    color: v.$text-description;
+    }
+
 }
