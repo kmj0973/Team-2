@@ -12,7 +12,7 @@ function BoardForm({ onAddPost }) {
     }
 
 
-    onAddPost({ id: Date.now(), title: title, content: content });
+    onAddPost({ id: crypto.randomUUID(), title: title, content: content });
     
     setTitle('');
     setContent('');
