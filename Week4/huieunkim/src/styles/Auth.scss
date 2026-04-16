@@ -51,7 +51,7 @@
 
       /* 에러 메시지 */
       .error-msg {
-        color: #dc3545;
+        color: v.$error-red;
         font-size: 12px;
         margin: 0;
       }
