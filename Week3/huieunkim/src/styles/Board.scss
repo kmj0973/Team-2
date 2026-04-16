@@ -1,3 +1,6 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
 /* 부모 영역 (Board) */
 .board-container {
   padding: 20px;
@@ -5,7 +8,7 @@
   .board-section {
     margin-bottom: 20px;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid v.$border-gray;
     border-radius: 8px;
 
     h3 { margin-top: 0; }
@@ -14,25 +17,23 @@
 
 /* 작성 폼 영역 (BoardForm) */
 .board-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  @include m.flex-column(10px);
 
   input {
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid v.$border-gray;
     border-radius: 4px;
   }
 
   button {
     padding: 10px;
-    background-color: #ff7710;
-    color: white;
+    background-color: v.$main-orange;
+    color: #FFFFFF;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 
-    &:hover { background-color: #e66a0c; }
+    &:hover { background-color: v.$hover-orange; }
   }
 }
 
@@ -43,10 +44,8 @@
 
   .board-item {
     padding: 15px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid v.$light-gray;
+   @include m.flex-between;
 
     .content-area {
       h4 { margin: 0 0 5px 0; }
