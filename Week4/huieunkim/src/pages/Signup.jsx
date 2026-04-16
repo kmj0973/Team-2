@@ -7,6 +7,7 @@ function Signup() {
   const navigate = useNavigate();
 
   // 1. useState로 입력값 관리 
+  const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -15,12 +16,13 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
 
   // 2. 실시간 유효성 검사 로직
+  const isUserIdValid = userId.trim().length > 0;
   const isEmailValid = email.includes('@');
   const isPasswordValid = password.length >= 8;
   const isPasswordMatch = password === passwordConfirm;
 
   // 전체 통과 여부 (버튼 활성화용)
-  const isAllValid = isEmailValid && isPasswordValid && isPasswordMatch;
+  const isAllValid = isUserIdValid && isEmailValid && isPasswordValid && isPasswordMatch;
 
   // 제출 핸들러
   const handleSubmit = (e) => {
@@ -28,7 +30,7 @@ function Signup() {
     if (!isAllValid) return;
 
     // 4. 제출 시 데이터 출력 및 페이지 이동
-    console.log('[회원가입 제출]', { email, password });
+    console.log('[회원가입 제출]', { userId, email, password });
     alert('회원가입이 완료되었습니다!');
     navigate('/');
   };
@@ -38,6 +40,19 @@ function Signup() {
       <h2>👤 회원가입</h2>
       <form onSubmit={handleSubmit}>
         
+        {/* 아이디 입력 */}
+        <div className="input-group">
+          <label>아이디</label>
+          <div className="input-wrapper">
+            <input 
+              type="text" 
+              value={userId} 
+              onChange={(e) => setUserId(e.target.value)} 
+              placeholder="아이디를 입력해주세요" 
+            />
+          </div>
+        </div>
+
         {/* 이메일 입력 */}
         <div className="input-group">
           <label>이메일</label>

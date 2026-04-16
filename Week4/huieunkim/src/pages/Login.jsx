@@ -6,19 +6,19 @@ import '../styles/Auth.scss';
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const isEmailValid = email.includes('@');
+  const isUserIdValid = userId.trim().length > 0;
   const isPasswordValid = password.length >= 8;
-  const isAllValid = isEmailValid && isPasswordValid;
+  const isAllValid = isUserIdValid && isPasswordValid;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isAllValid) return;
 
-    console.log('[로그인 제출]', { email, password });
+    console.log('[로그인 제출]', { userId, password });
     alert('로그인 성공!');
     navigate('/');
   };
@@ -29,18 +29,15 @@ function Login() {
       <form onSubmit={handleSubmit}>
         
         <div className="input-group">
-          <label>이메일</label>
+          <label>아이디</label>
           <div className="input-wrapper">
             <input 
               type="text" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="이메일을 입력해주세요" 
+              value={userId} 
+              onChange={(e) => setUserId(e.target.value)} 
+              placeholder="아이디를 입력해주세요" 
             />
           </div>
-          {email.length > 0 && !isEmailValid && (
-            <p className="error-msg">이메일 형식이 올바르지 않습니다.</p>
-          )}
         </div>
 
         <div className="input-group">
