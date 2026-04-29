@@ -17,7 +17,7 @@ function Signup() {
 
   // 실시간 유효성 검사 로직
   const isUserIdValid = /^[a-zA-Z0-9]{4,20}$/.test(userId);
-  const isEmailValid = email.includes('@');
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordValid = 
   password.length >= 8 && 
     /[a-zA-Z]/.test(password) && 
@@ -73,7 +73,8 @@ function Signup() {
           </div>
           {/* 3. 에러 메시지 조건부 렌더링 (입력값 존재 but 형식 틀림) */}
           {email.length > 0 && !isEmailValid && (
-            <p className="error-msg">이메일 형식(@ 포함)에 맞게 입력해주세요.</p>
+            <p className="error-msg">올바른 이메일 형식을 입력해주세요.<br />
+            (ex: user@example.com)</p>
           )}
         </div>
 
