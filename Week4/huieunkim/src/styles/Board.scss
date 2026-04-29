@@ -45,7 +45,7 @@
   .board-item {
     padding: 15px;
     border-bottom: 1px solid v.$light-gray;
-   @include m.flex-between;
+    @include m.flex-between;
 
     .content-area {
       h4 { margin: 0 0 5px 0; }
