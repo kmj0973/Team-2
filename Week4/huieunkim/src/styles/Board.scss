@@ -19,12 +19,17 @@
 .board-form {
   @include m.flex-column(10px);
 
-  input {
+  input, textarea {
     padding: 8px;
     border: 1px solid v.$border-gray;
     border-radius: 4px;
   }
 
+  textarea {
+    min-height: 150px; // 넓은 환경
+    resize: vertical; // 레이아웃 파괴 방지
+    font-family: inherit; // 폰트 일관성 유지
+  }
   button {
     padding: 10px;
     background-color: v.$main-orange;
@@ -48,8 +53,14 @@
     @include m.flex-between;
 
     .content-area {
-      h4 { margin: 0 0 5px 0; }
-      p { margin: 0; color: #555; }
+      h4 { 
+        margin: 0 0 5px 0; 
+      }
+      p {
+        margin: 0;
+        color: #555;
+        white-space: pre-wrap; // 줄바꿈 유지
+      }
     }
 
     button {
