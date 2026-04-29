@@ -23,7 +23,7 @@ function Board() {
       <h2>📝 자유 게시판</h2>
       
       {/* 💡 실습 2. 입력 폼 컴포넌트(BoardForm)가 들어갈 자리 */}
-      <div clssName="board-section">
+      <div className="board-section">
         <h3>게시글 작성 영역 (BoardForm)</h3>
         <BoardForm onAddPost={handleAddPost} />
       </div>
