@@ -45,9 +45,10 @@ function Signup() {
         
         {/* 아이디 입력 */}
         <div className="input-group">
-          <label>아이디</label>
+          <label htmlFor="userIdInput">아이디</label>
           <div className="input-wrapper">
             <input 
+              id="userIdInput"
               type="text" 
               value={userId} 
               onChange={(e) => setUserId(e.target.value)} 
@@ -62,9 +63,10 @@ function Signup() {
 
         {/* 이메일 입력 */}
         <div className="input-group">
-          <label>이메일</label>
+          <label htmlFor="emailInput">이메일</label>
           <div className="input-wrapper">
             <input 
+              id="emailInput"
               type="text" 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
@@ -80,9 +82,10 @@ function Signup() {
 
         {/* 비밀번호 입력 */}
         <div className="input-group">
-          <label>비밀번호</label>
+          <label htmlFor="passwordInput">비밀번호</label>
           <div className="input-wrapper">
             <input 
+              id="passwordInput"
               type={showPassword ? "text" : "password"} 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
@@ -104,9 +107,10 @@ function Signup() {
 
         {/* 비밀번호 확인 입력 */}
         <div className="input-group">
-          <label>비밀번호 확인</label>
+          <label htmlFor="passwordConfirmInput">비밀번호 확인</label>
           <div className="input-wrapper">
             <input 
+              id="passwordConfirmInput"
               type={showPassword ? "text" : "password"} 
               value={passwordConfirm} 
               onChange={(e) => setPasswordConfirm(e.target.value)} 

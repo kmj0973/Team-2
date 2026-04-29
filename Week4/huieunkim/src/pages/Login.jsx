@@ -32,9 +32,10 @@ function Login() {
       <form onSubmit={handleSubmit}>
         
         <div className="input-group">
-          <label>아이디</label>
+          <label htmlFor="userIdInput">아이디</label>
           <div className="input-wrapper">
             <input 
+              id="userIdInput"
               type="text" 
               value={userId} 
               onChange={(e) => setUserId(e.target.value)} 
@@ -47,9 +48,10 @@ function Login() {
         </div>
 
         <div className="input-group">
-          <label>비밀번호</label>
+          <label htmlFor="passwordInput">비밀번호</label>
           <div className="input-wrapper">
             <input 
+              id="passwordInput"
               type={showPassword ? "text" : "password"} 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
