@@ -10,11 +10,18 @@ export const BoardPage = () => {
   const [posts, setPosts] = useState([]);
 
   const addPost = ({ title, content }) => {
-    if (title.length == 0 || content.length == 0) {
+    const newTitle = title.trim();
+    const newContent = content.trim();
+
+    if (newTitle.length === 0 || newContent.length === 0) {
       alert('제목과 내용을 모두 입력해주세요!');
       return;
     }
-    setPosts([...posts, { id: uuidv4(), title, content }]);
+
+    setPosts([
+      ...posts,
+      { id: uuidv4(), title: newTitle, content: newContent },
+    ]);
   };
 
   const deletePost = (id) => {

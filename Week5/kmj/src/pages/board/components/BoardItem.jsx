@@ -25,14 +25,22 @@ const BoardItem = ({ post, deletePost, updatePost }) => {
           <div className={styles.boardItemButtonWrapper}>
             <button
               className={styles.boardItemDeleteButton}
-              onClick={() => setIsEditing(!isEditing)}
+              onClick={() => {
+                setTitle(post.title);
+                setContent(post.content);
+                setIsEditing(false);
+              }}
             >
               취소
             </button>
             <button
               className={styles.boardItemUpdateButton}
               onClick={() => {
-                updatePost(post.id, title, content);
+                if (title.trim().length === 0 || content.trim().length === 0) {
+                  alert('제목과 내용을 모두 입력해주세요!');
+                  return;
+                }
+                updatePost(post.id, title.trim(), content.trim());
                 setIsEditing(!isEditing);
               }}
             >
