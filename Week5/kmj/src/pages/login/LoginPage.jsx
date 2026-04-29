@@ -14,7 +14,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = (data) => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
     if (
       storedUser &&
       data.username === storedUser.username &&

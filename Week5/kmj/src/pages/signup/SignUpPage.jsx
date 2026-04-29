@@ -13,7 +13,7 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
 
   const handleSignup = (data) => {
-    localStorage.setItem('user', JSON.stringify(data));
+    sessionStorage.setItem('user', JSON.stringify(data));
     console.log('회원가입 정보:', data);
     alert('가입이 완료되었습니다!');
     navigate('/login');
