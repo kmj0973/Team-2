@@ -7,7 +7,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const BoardPage = () => {
   // 💡 실습 1. 여기에 가짜 데이터 상태(useState)를 만들게 됩니다.
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(() => {
+    const stored = localStorage.getItem('posts');
+    return stored ? JSON.parse(stored) : [];
+  });
 
   const addPost = ({ title, content }) => {
     const newTitle = title.trim();
@@ -18,20 +21,35 @@ export const BoardPage = () => {
       return;
     }
 
-    setPosts([
-      ...posts,
-      { id: uuidv4(), title: newTitle, content: newContent },
-    ]);
+    const newPost = { id: uuidv4(), title: newTitle, content: newContent };
+
+    setPosts([...posts, newPost]);
+
+    localStorage.setItem('posts', JSON.stringify([...posts, newPost]));
   };
 
   const deletePost = (id) => {
     setPosts(posts.filter((post) => post.id !== id));
+
+    localStorage.setItem(
+      'posts',
+      JSON.stringify(posts.filter((post) => post.id !== id)),
+    );
   };
 
   const updatePost = (id, title, content) => {
     setPosts(
       posts.map((post) =>
         post.id === id ? { ...post, title, content } : post,
+      ),
+    );
+
+    localStorage.setItem(
+      'posts',
+      JSON.stringify(
+        posts.map((post) =>
+          post.id === id ? { ...post, title, content } : post,
+        ),
       ),
     );
   };
