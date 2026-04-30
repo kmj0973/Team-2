@@ -20,22 +20,23 @@ function Login() {
     if (!isAllValid) return;
 
     // 로컬 스토리지(가짜 DB)에서 방금 가입한 유저 정보 꺼내기
-    const savedUserStr = localStorage.getItem("fake-db-user");
+    const savedUsersStr = localStorage.getItem("fake-db-users");
 
     // 데이터 없는 경우
-    if (!savedUserStr) {
+    if (!savedUsersStr) {
       alert("가입된 정보가 없습니다. 회원가입을 먼저 진행해주세요!");
       return;
     }
 
-    const savedUser = JSON.parse(savedUserStr);
+    const savedUsers = JSON.parse(savedUsersStr);
+    const foundUser = savedUsers.find((user) => user.userId === userId);
 
-    if (savedUser.userId !== userId) {
+    if (!foundUser.userId !== userId) {
       alert("존재하지 않는 아이디입니다.");
       return;
     }
 
-    if (savedUser.password !== password) {
+    if (foundUser.password !== password) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }

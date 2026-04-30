@@ -33,7 +33,10 @@ function Signup() {
     console.log("[회원가입 제출]", data);
     alert("회원가입이 완료되었습니다!");
 
-    localStorage.setItem("fake-db-user", JSON.stringify(data)); // DB인척
+    const existingUsers =
+      JSON.parse(localStorage.getItem("fake-db-users")) || [];
+    existingUsers.push(data);
+    localStorage.setItem("fake-db-users", JSON.stringify(existingUsers)); // DB인척
     sessionStorage.removeItem("signup-draft");
     reset({ userId: "", email: "", password: "", passwordConfirm: "" });
     navigate("/");
