@@ -17,6 +17,7 @@ function Signup() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -31,8 +32,10 @@ function Signup() {
   const onSubmit = (data) => {
     console.log("[회원가입 제출]", data);
     alert("회원가입이 완료되었습니다!");
-    sessionStorage.removeItem("signup-draft");
+
     localStorage.setItem("fake-db-user", JSON.stringify(data)); // DB인척
+    sessionStorage.removeItem("signup-draft");
+    reset({ userId: "", email: "", password: "", passwordConfirm: "" });
     navigate("/");
   };
 
