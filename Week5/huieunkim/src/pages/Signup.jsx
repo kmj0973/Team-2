@@ -1,31 +1,43 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import '../styles/Auth.scss';
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "../styles/Auth.scss";
+
+const getInitialData = () => {
+  const savedDraft = sessionStorage.getItem("signup-draft");
+  return savedDraft ? JSON.parse(savedDraft) : {};
+};
 
 function Signup() {
   const navigate = useNavigate();
 
-  // useState로 입력값 관리 
-  const [userId, setUserId] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  
+  const [userId, setUserId] = useState(() => getInitialData().userId || "");
+  const [email, setEmail] = useState(() => getInitialData().email || "");
+  const [password, setPassword] = useState(
+    () => getInitialData().password || "",
+  );
+  const [passwordConfirm, setPasswordConfirm] = useState(
+    () => getInitialData().passwordConfirm || "",
+  );
+
   // 선택 조건: 비밀번호 숨기기/보이기 상태 관리
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const draftData = { userId, email, password, passwordConfirm };
+    sessionStorage.setItem("signup-draft", JSON.stringify(draftData));
+  }, [userId, email, password, passwordConfirm]);
 
   // 실시간 유효성 검사 로직
   const isUserIdValid = /^[a-zA-Z0-9]{4,20}$/.test(userId);
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPasswordValid = 
-  password.length >= 8 && 
-    /[a-zA-Z]/.test(password) && 
-    /[0-9]/.test(password);
+  const isPasswordValid =
+    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
   const isPasswordMatch = password === passwordConfirm;
 
   // 전체 통과 여부 (버튼 활성화용)
-  const isAllValid = isUserIdValid && isEmailValid && isPasswordValid && isPasswordMatch;
+  const isAllValid =
+    isUserIdValid && isEmailValid && isPasswordValid && isPasswordMatch;
 
   // 제출 핸들러
   const handleSubmit = (e) => {
@@ -33,31 +45,35 @@ function Signup() {
     if (!isAllValid) return;
 
     // 4. 제출 시 데이터 출력 및 페이지 이동
-    console.log('[회원가입 제출]', { userId, email, password });
-    alert('회원가입이 완료되었습니다!');
-    navigate('/');
+    console.log("[회원가입 제출]", { userId, email, password });
+    alert("회원가입이 완료되었습니다!");
+
+    sessionStorage.removeItem("signup-draft"); // 가입 끝나면 비우기
+
+    navigate("/");
   };
 
   return (
     <div className="auth-container">
       <h2>👤 회원가입</h2>
       <form onSubmit={handleSubmit}>
-        
         {/* 아이디 입력 */}
         <div className="input-group">
           <label htmlFor="userIdInput">아이디</label>
           <div className="input-wrapper">
-            <input 
+            <input
               id="userIdInput"
-              type="text" 
-              value={userId} 
-              onChange={(e) => setUserId(e.target.value)} 
-              placeholder="아이디를 입력해주세요" 
+              type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              placeholder="아이디를 입력해주세요"
             />
           </div>
           {/* 아이디 에러 메시지 */}
           {userId.length > 0 && !isUserIdValid && (
-            <p className="error-msg">영문과 숫자만 사용하여 4~20자로 입력해주세요.</p>
+            <p className="error-msg">
+              영문과 숫자만 사용하여 4~20자로 입력해주세요.
+            </p>
           )}
         </div>
 
@@ -65,18 +81,21 @@ function Signup() {
         <div className="input-group">
           <label htmlFor="emailInput">이메일</label>
           <div className="input-wrapper">
-            <input 
+            <input
               id="emailInput"
-              type="text" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="이메일을 입력해주세요" 
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="이메일을 입력해주세요"
             />
           </div>
           {/* 3. 에러 메시지 조건부 렌더링 (입력값 존재 but 형식 틀림) */}
           {email.length > 0 && !isEmailValid && (
-            <p className="error-msg">올바른 이메일 형식을 입력해주세요.<br />
-            (ex: user@example.com)</p>
+            <p className="error-msg">
+              올바른 이메일 형식을 입력해주세요.
+              <br />
+              (ex: user@example.com)
+            </p>
           )}
         </div>
 
@@ -84,16 +103,16 @@ function Signup() {
         <div className="input-group">
           <label htmlFor="passwordInput">비밀번호</label>
           <div className="input-wrapper">
-            <input 
+            <input
               id="passwordInput"
-              type={showPassword ? "text" : "password"} 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="비밀번호를 입력해주세요" 
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="비밀번호를 입력해주세요"
             />
             {/* 눈 아이콘 토글 버튼 */}
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="toggle-btn"
               onClick={() => setShowPassword(!showPassword)}
             >
@@ -101,7 +120,9 @@ function Signup() {
             </button>
           </div>
           {password.length > 0 && !isPasswordValid && (
-            <p className="error-msg">비밀번호는 영문과 숫자를 모두 포함하여 8자 이상이어야 합니다.</p>
+            <p className="error-msg">
+              비밀번호는 영문과 숫자를 모두 포함하여 8자 이상이어야 합니다.
+            </p>
           )}
         </div>
 
@@ -109,12 +130,12 @@ function Signup() {
         <div className="input-group">
           <label htmlFor="passwordConfirmInput">비밀번호 확인</label>
           <div className="input-wrapper">
-            <input 
+            <input
               id="passwordConfirmInput"
-              type={showPassword ? "text" : "password"} 
-              value={passwordConfirm} 
-              onChange={(e) => setPasswordConfirm(e.target.value)} 
-              placeholder="비밀번호를 다시 입력해주세요" 
+              type={showPassword ? "text" : "password"}
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+              placeholder="비밀번호를 다시 입력해주세요"
             />
           </div>
           {passwordConfirm.length > 0 && !isPasswordMatch && (
