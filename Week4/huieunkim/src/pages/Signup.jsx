@@ -17,7 +17,7 @@ function Signup() {
 
   // 실시간 유효성 검사 로직
   const isUserIdValid = /^[a-zA-Z0-9]{4,20}$/.test(userId);
-  const isEmailValid = email.includes('@');
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordValid = 
   password.length >= 8 && 
     /[a-zA-Z]/.test(password) && 
@@ -45,9 +45,10 @@ function Signup() {
         
         {/* 아이디 입력 */}
         <div className="input-group">
-          <label>아이디</label>
+          <label htmlFor="userIdInput">아이디</label>
           <div className="input-wrapper">
             <input 
+              id="userIdInput"
               type="text" 
               value={userId} 
               onChange={(e) => setUserId(e.target.value)} 
@@ -62,9 +63,10 @@ function Signup() {
 
         {/* 이메일 입력 */}
         <div className="input-group">
-          <label>이메일</label>
+          <label htmlFor="emailInput">이메일</label>
           <div className="input-wrapper">
             <input 
+              id="emailInput"
               type="text" 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
@@ -73,15 +75,17 @@ function Signup() {
           </div>
           {/* 3. 에러 메시지 조건부 렌더링 (입력값 존재 but 형식 틀림) */}
           {email.length > 0 && !isEmailValid && (
-            <p className="error-msg">이메일 형식(@ 포함)에 맞게 입력해주세요.</p>
+            <p className="error-msg">올바른 이메일 형식을 입력해주세요.<br />
+            (ex: user@example.com)</p>
           )}
         </div>
 
         {/* 비밀번호 입력 */}
         <div className="input-group">
-          <label>비밀번호</label>
+          <label htmlFor="passwordInput">비밀번호</label>
           <div className="input-wrapper">
             <input 
+              id="passwordInput"
               type={showPassword ? "text" : "password"} 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
@@ -103,9 +107,10 @@ function Signup() {
 
         {/* 비밀번호 확인 입력 */}
         <div className="input-group">
-          <label>비밀번호 확인</label>
+          <label htmlFor="passwordConfirmInput">비밀번호 확인</label>
           <div className="input-wrapper">
             <input 
+              id="passwordConfirmInput"
               type={showPassword ? "text" : "password"} 
               value={passwordConfirm} 
               onChange={(e) => setPasswordConfirm(e.target.value)} 

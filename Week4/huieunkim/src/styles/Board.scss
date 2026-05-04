@@ -19,12 +19,17 @@
 .board-form {
   @include m.flex-column(10px);
 
-  input {
+  input, textarea {
     padding: 8px;
     border: 1px solid v.$border-gray;
     border-radius: 4px;
   }
 
+  textarea {
+    min-height: 150px; // 넓은 환경
+    resize: vertical; // 레이아웃 파괴 방지
+    font-family: inherit; // 폰트 일관성 유지
+  }
   button {
     padding: 10px;
     background-color: v.$main-orange;
@@ -45,22 +50,31 @@
   .board-item {
     padding: 15px;
     border-bottom: 1px solid v.$light-gray;
-   @include m.flex-between;
+    @include m.flex-between;
 
     .content-area {
-      h4 { margin: 0 0 5px 0; }
-      p { margin: 0; color: #555; }
+      text-align: left;
+      h4 { 
+        margin: 0 0 5px 0; 
+      }
+      p {
+        margin: 0;
+        color: #a2a2a2;
+        white-space: pre-wrap; // 줄바꿈 유지
+        line-height: 1.5;
+      }
     }
 
     button {
       padding: 5px 10px;
-      background-color: #dc3545;
-      color: white;
+      background-color: v.$error-red;
+      color: #FFFFFF;
       border: none;
       border-radius: 4px;
       cursor: pointer;
 
-      &:hover { background-color: #c82333; }
+      &:hover { 
+        background-color: darken(v.$error-red, 10%); }
     }
   }
 }
