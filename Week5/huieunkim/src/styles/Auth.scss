@@ -54,6 +54,8 @@
         color: v.$error-red;
         font-size: 12px;
         margin: 0;
+        white-space: pre-line;
+        word-break: keep-all;
       }
     }
 
