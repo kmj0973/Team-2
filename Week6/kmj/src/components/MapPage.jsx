@@ -31,8 +31,8 @@ export const MapPage = () => {
 
   //마커 추가 함수
   const addMarker = (_target, mouseEvent) => {
-    setMarkers([
-      ...markers,
+    setMarkers((prev) => [
+      ...prev,
       {
         position: {
           lat: mouseEvent.latLng.getLat(),
@@ -45,8 +45,8 @@ export const MapPage = () => {
 
   //마커 오버레이 토글 함수
   const toggleMarkerInfo = (index) => {
-    setMarkers(
-      markers.map((m, i) => (i === index ? { ...m, isOpen: !m.isOpen } : m)),
+    setMarkers((prev) =>
+      prev.map((m, i) => (i === index ? { ...m, isOpen: !m.isOpen } : m)),
     );
   };
 
@@ -72,7 +72,6 @@ export const MapPage = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '5px',
-                color: '#77a3e1878',
               }}
             >
               <div>{index}번 마커입니다.</div>
